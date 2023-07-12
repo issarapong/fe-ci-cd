@@ -28,7 +28,7 @@ function App() {
                     target='_blank'
                     rel='noopener noreferrer'
                 >
-                    Learn DevOps with Pavit
+                    Learn DevOps & vecel
                     {process.env.MAGIC_NAME}
                 </a>
                 <button onClick={fetchData}>fetch</button>
