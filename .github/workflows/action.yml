@@ -31,7 +31,7 @@ jobs:
               with:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+      # Build and push docker image
             - name: Docker Build and Push
               uses: docker/build-push-action@v2
               with:
@@ -39,16 +39,16 @@ jobs:
                   file: ./Dockerfile.prod
                   push: true
                   tags: issarapong/react-ci-cd:latest
-
-            # - name: Deploy to Cloud
-            #   uses: appleboy/ssh-action@master
-            #   with:
-            #       host: ${{ secrets.HOST }}
-            #       username: ${{ secrets.USERNAME }}
-            #       key: ${{ secrets.SSH_PRIVATE_KEY }}
-            #       port: ${{ secrets.SSH_PORT }}
-            #       script: |
-            #           docker pull pavitpim40/react-ci:latest
-            #           docker stop react-ci
-            #           docker rm react-ci
-            #           docker run -d --name react-ci -p 80:80 pavitpim40/react-ci:latest
+        # Deploy to Cloud
+            - name: Deploy to Cloud
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  port: ${{ secrets.SSH_PORT }}
+                  script: |
+                      docker pull issarapong/react-ci-cd:latest
+                      docker stop react-ci-cd
+                      docker rm react-ci-cd
+                      docker run -d --name react-ci-cd -p 80:80 issarapong/react-ci-cd:latest
