@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React& Devops With Issarapong
           {process.env.MAGIC_NAME}
         </a>
       </header>
